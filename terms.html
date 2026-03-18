@@ -15,6 +15,7 @@
             --text-secondary: #6E6E73;
             --text-tertiary: #AEAEB2;
             --bg-white: #FFFFFF;
+            --bg-gray: #F5F5F7;
             --font-body: 'Plus Jakarta Sans', -apple-system, 'PingFang SC', 'Noto Sans SC', sans-serif;
             --max-width: 800px;
         }
@@ -33,6 +34,21 @@
         .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); }
         .nav-brand img { width: 32px; height: 32px; border-radius: 8px; }
         .nav-brand span { font-weight: 700; font-size: 16px; }
+        .lang-switch {
+            display: inline-flex; align-items: center; gap: 2px;
+            padding: 4px; background: var(--bg-gray); border-radius: 8px;
+            font-size: 13px; font-weight: 600;
+        }
+        .lang-switch button {
+            padding: 4px 10px; border: none; border-radius: 6px;
+            background: transparent; color: var(--text-tertiary);
+            font-size: 13px; font-weight: 600; cursor: pointer;
+            transition: all 0.2s; font-family: var(--font-body);
+        }
+        .lang-switch button.active {
+            background: white; color: var(--text-primary);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
 
         .content {
             max-width: var(--max-width);
@@ -40,39 +56,25 @@
             padding: 120px 24px 80px;
         }
         .content h1 {
-            font-size: 36px;
-            font-weight: 800;
-            margin-bottom: 8px;
-            letter-spacing: -0.02em;
+            font-size: 36px; font-weight: 800;
+            margin-bottom: 8px; letter-spacing: -0.02em;
         }
         .content .update-date {
-            font-size: 14px;
-            color: var(--text-tertiary);
-            margin-bottom: 48px;
+            font-size: 14px; color: var(--text-tertiary); margin-bottom: 48px;
         }
         .content h2 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-top: 40px;
-            margin-bottom: 12px;
-            color: var(--text-primary);
+            font-size: 20px; font-weight: 700;
+            margin-top: 40px; margin-bottom: 12px; color: var(--text-primary);
         }
         .content p, .content ul {
-            font-size: 15px;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
+            font-size: 15px; color: var(--text-secondary); margin-bottom: 16px;
         }
-        .content ul {
-            padding-left: 24px;
-        }
-        .content li {
-            margin-bottom: 8px;
-        }
+        .content ul { padding-left: 24px; }
+        .content li { margin-bottom: 8px; }
 
         footer {
             border-top: 1px solid rgba(0,0,0,0.06);
-            padding: 40px;
-            text-align: center;
+            padding: 40px; text-align: center;
         }
         .footer-inner {
             max-width: 1200px; margin: 0 auto;
@@ -99,65 +101,69 @@
         <img src="Buzyclaw_macOS.png" alt="虾忙">
         <span>虾忙 BuzyClaw</span>
     </a>
+    <div class="lang-switch">
+        <button class="active" data-lang="zh">中</button>
+        <button data-lang="en">EN</button>
+    </div>
 </nav>
 
 <div class="content">
-    <h1>使用条款</h1>
-    <p class="update-date">最后更新日期：2026 年 3 月 18 日</p>
+    <h1 data-zh="使用条款" data-en="Terms of Service">使用条款</h1>
+    <p class="update-date" data-zh="最后更新日期：2026 年 3 月 18 日" data-en="Last Updated: March 18, 2026">最后更新日期：2026 年 3 月 18 日</p>
 
-    <p>欢迎使用虾忙 BuzyClaw（以下简称"本应用"）。使用本应用即表示您同意遵守以下条款。请在使用前仔细阅读。</p>
+    <p data-zh="欢迎使用虾忙 BuzyClaw（以下简称&quot;本应用&quot;）。使用本应用即表示您同意遵守以下条款。请在使用前仔细阅读。" data-en="Welcome to BuzyClaw (hereinafter referred to as &quot;the App&quot;). By using this App, you agree to comply with the following terms. Please read them carefully before use.">欢迎使用虾忙 BuzyClaw（以下简称"本应用"）。使用本应用即表示您同意遵守以下条款。请在使用前仔细阅读。</p>
 
-    <h2>1. 服务说明</h2>
-    <p>本应用是基于 OpenClaw 平台的原生客户端，提供 AI Agent 的可视化管理功能，包括但不限于：</p>
-    <ul>
-        <li>Agent 管理与监控</li>
-        <li>任务创建与追踪</li>
-        <li>记忆数据管理</li>
-        <li>定时任务配置</li>
-        <li>macOS 与 iOS 设备间的协同操作</li>
+    <h2 data-zh="1. 服务说明" data-en="1. Service Description">1. 服务说明</h2>
+    <p data-zh="本应用是基于 OpenClaw 平台的原生客户端，提供 AI Agent 的可视化管理功能，包括但不限于：" data-en="The App is a native client built on the OpenClaw platform, providing visual management of AI Agents, including but not limited to:">本应用是基于 OpenClaw 平台的原生客户端，提供 AI Agent 的可视化管理功能，包括但不限于：</p>
+    <ul id="section-service">
+        <li data-zh="Agent 管理与监控" data-en="Agent management and monitoring">Agent 管理与监控</li>
+        <li data-zh="任务创建与追踪" data-en="Task creation and tracking">任务创建与追踪</li>
+        <li data-zh="记忆数据管理" data-en="Memory data management">记忆数据管理</li>
+        <li data-zh="定时任务配置" data-en="Scheduled task configuration">定时任务配置</li>
+        <li data-zh="macOS 与 iOS 设备间的协同操作" data-en="Cross-device collaboration between macOS and iOS">macOS 与 iOS 设备间的协同操作</li>
     </ul>
 
-    <h2>2. 使用要求</h2>
-    <p>使用本应用需要满足以下条件：</p>
-    <ul>
-        <li>macOS 版本：macOS 14.0 (Sonoma) 或更高版本</li>
-        <li>iOS 版本：iOS 17.0 或更高版本</li>
-        <li>拥有可用的 OpenClaw 服务端</li>
-        <li>macOS 与 iOS 设备使用同一 Apple ID（如需跨设备协同）</li>
+    <h2 data-zh="2. 使用要求" data-en="2. Requirements">2. 使用要求</h2>
+    <p data-zh="使用本应用需要满足以下条件：" data-en="The following conditions must be met to use the App:">使用本应用需要满足以下条件：</p>
+    <ul id="section-requirements">
+        <li data-zh="macOS 版本：macOS 14.0 (Sonoma) 或更高版本" data-en="macOS version: macOS 14.0 (Sonoma) or later">macOS 版本：macOS 14.0 (Sonoma) 或更高版本</li>
+        <li data-zh="iOS 版本：iOS 17.0 或更高版本" data-en="iOS version: iOS 17.0 or later">iOS 版本：iOS 17.0 或更高版本</li>
+        <li data-zh="拥有可用的 OpenClaw 服务端" data-en="An available OpenClaw server instance">拥有可用的 OpenClaw 服务端</li>
+        <li data-zh="macOS 与 iOS 设备使用同一 Apple ID（如需跨设备协同）" data-en="Same Apple ID on macOS and iOS devices (for cross-device sync)">macOS 与 iOS 设备使用同一 Apple ID（如需跨设备协同）</li>
     </ul>
 
-    <h2>3. 用户责任</h2>
-    <p>在使用本应用时，您同意：</p>
-    <ul>
-        <li>自行负责 OpenClaw 服务端的部署、维护和安全</li>
-        <li>确保通过本应用管理的 AI Agent 的行为符合相关法律法规</li>
-        <li>不利用本应用进行任何违法或损害他人利益的活动</li>
-        <li>妥善保管您的账户信息和访问凭证</li>
+    <h2 data-zh="3. 用户责任" data-en="3. User Responsibilities">3. 用户责任</h2>
+    <p data-zh="在使用本应用时，您同意：" data-en="By using the App, you agree to:">在使用本应用时，您同意：</p>
+    <ul id="section-responsibilities">
+        <li data-zh="自行负责 OpenClaw 服务端的部署、维护和安全" data-en="Be responsible for the deployment, maintenance, and security of your OpenClaw server">自行负责 OpenClaw 服务端的部署、维护和安全</li>
+        <li data-zh="确保通过本应用管理的 AI Agent 的行为符合相关法律法规" data-en="Ensure that AI Agents managed through this App comply with applicable laws and regulations">确保通过本应用管理的 AI Agent 的行为符合相关法律法规</li>
+        <li data-zh="不利用本应用进行任何违法或损害他人利益的活动" data-en="Not use the App for any illegal activities or activities that harm others">不利用本应用进行任何违法或损害他人利益的活动</li>
+        <li data-zh="妥善保管您的账户信息和访问凭证" data-en="Properly safeguard your account information and access credentials">妥善保管您的账户信息和访问凭证</li>
     </ul>
 
-    <h2>4. 知识产权</h2>
-    <p>本应用的所有内容，包括但不限于界面设计、图标、代码、文字等，均受知识产权法律保护。未经授权，您不得复制、修改、分发或以其他方式使用本应用的任何组成部分。</p>
+    <h2 data-zh="4. 知识产权" data-en="4. Intellectual Property">4. 知识产权</h2>
+    <p data-zh="本应用的所有内容，包括但不限于界面设计、图标、代码、文字等，均受知识产权法律保护。未经授权，您不得复制、修改、分发或以其他方式使用本应用的任何组成部分。" data-en="All content of the App, including but not limited to interface design, icons, code, and text, is protected by intellectual property laws. You may not copy, modify, distribute, or otherwise use any part of the App without authorization.">本应用的所有内容，包括但不限于界面设计、图标、代码、文字等，均受知识产权法律保护。未经授权，您不得复制、修改、分发或以其他方式使用本应用的任何组成部分。</p>
 
-    <h2>5. 免责声明</h2>
-    <p>本应用按"现状"提供，我们不对以下情况承担责任：</p>
-    <ul>
-        <li>因 OpenClaw 服务端故障导致的数据丢失或服务中断</li>
-        <li>因网络环境问题导致的连接失败或数据延迟</li>
-        <li>因 AI Agent 执行结果造成的任何直接或间接损失</li>
-        <li>因第三方服务（包括 iCloud、OpenClaw）变更导致的功能影响</li>
+    <h2 data-zh="5. 免责声明" data-en="5. Disclaimer">5. 免责声明</h2>
+    <p data-zh="本应用按&quot;现状&quot;提供，我们不对以下情况承担责任：" data-en="The App is provided &quot;as is.&quot; We are not liable for the following:">本应用按"现状"提供，我们不对以下情况承担责任：</p>
+    <ul id="section-disclaimer">
+        <li data-zh="因 OpenClaw 服务端故障导致的数据丢失或服务中断" data-en="Data loss or service interruptions caused by OpenClaw server failures">因 OpenClaw 服务端故障导致的数据丢失或服务中断</li>
+        <li data-zh="因网络环境问题导致的连接失败或数据延迟" data-en="Connection failures or data delays caused by network issues">因网络环境问题导致的连接失败或数据延迟</li>
+        <li data-zh="因 AI Agent 执行结果造成的任何直接或间接损失" data-en="Any direct or indirect losses caused by AI Agent execution results">因 AI Agent 执行结果造成的任何直接或间接损失</li>
+        <li data-zh="因第三方服务（包括 iCloud、OpenClaw）变更导致的功能影响" data-en="Functional impacts caused by changes to third-party services (including iCloud, OpenClaw)">因第三方服务（包括 iCloud、OpenClaw）变更导致的功能影响</li>
     </ul>
 
-    <h2>6. 服务变更</h2>
-    <p>我们保留随时修改、暂停或终止本应用部分或全部功能的权利，恕不另行通知。我们将尽力提前告知重大变更，但不承担因此造成的损失。</p>
+    <h2 data-zh="6. 服务变更" data-en="6. Service Changes">6. 服务变更</h2>
+    <p data-zh="我们保留随时修改、暂停或终止本应用部分或全部功能的权利，恕不另行通知。我们将尽力提前告知重大变更，但不承担因此造成的损失。" data-en="We reserve the right to modify, suspend, or terminate any or all features of the App at any time without prior notice. We will make reasonable efforts to announce major changes in advance, but assume no liability for resulting losses.">我们保留随时修改、暂停或终止本应用部分或全部功能的权利，恕不另行通知。我们将尽力提前告知重大变更，但不承担因此造成的损失。</p>
 
-    <h2>7. 条款更新</h2>
-    <p>我们可能会不时更新本使用条款。更新后的条款将在本页面发布，继续使用本应用即表示您接受更新后的条款。</p>
+    <h2 data-zh="7. 条款更新" data-en="7. Terms Updates">7. 条款更新</h2>
+    <p data-zh="我们可能会不时更新本使用条款。更新后的条款将在本页面发布，继续使用本应用即表示您接受更新后的条款。" data-en="We may update these Terms of Service from time to time. Updated terms will be posted on this page. Continued use of the App constitutes acceptance of the updated terms.">我们可能会不时更新本使用条款。更新后的条款将在本页面发布，继续使用本应用即表示您接受更新后的条款。</p>
 
-    <h2>8. 适用法律</h2>
-    <p>本使用条款受中华人民共和国法律管辖。因本条款引起的任何争议，双方应友好协商解决；协商不成的，应提交有管辖权的人民法院诉讼解决。</p>
+    <h2 data-zh="8. 适用法律" data-en="8. Governing Law">8. 适用法律</h2>
+    <p data-zh="本使用条款受中华人民共和国法律管辖。因本条款引起的任何争议，双方应友好协商解决；协商不成的，应提交有管辖权的人民法院诉讼解决。" data-en="These Terms of Service are governed by the laws of the People's Republic of China. Any disputes arising from these terms shall be resolved through friendly negotiation; if negotiation fails, the dispute shall be submitted to a court of competent jurisdiction.">本使用条款受中华人民共和国法律管辖。因本条款引起的任何争议，双方应友好协商解决；协商不成的，应提交有管辖权的人民法院诉讼解决。</p>
 
-    <h2>9. 联系方式</h2>
-    <p>如您对本使用条款有任何疑问，请通过我们的官方网站联系我们。</p>
+    <h2 data-zh="9. 联系方式" data-en="9. Contact">9. 联系方式</h2>
+    <p data-zh="如您对本使用条款有任何疑问，请通过我们的官方网站联系我们。" data-en="If you have any questions about these Terms of Service, please contact us through our official website.">如您对本使用条款有任何疑问，请通过我们的官方网站联系我们。</p>
 </div>
 
 <footer>
@@ -167,12 +173,39 @@
             <span>&copy; 2026 虾忙 BuzyClaw. All rights reserved.</span>
         </div>
         <ul class="footer-links">
-            <li><a href="privacy.html">隐私政策</a></li>
-            <li><a href="terms.html">使用条款</a></li>
-            <li><a href="index.html">返回首页</a></li>
+            <li><a href="privacy.html" data-zh="隐私政策" data-en="Privacy Policy">隐私政策</a></li>
+            <li><a href="terms.html" data-zh="使用条款" data-en="Terms of Service">使用条款</a></li>
+            <li><a href="index.html" data-zh="返回首页" data-en="Home">返回首页</a></li>
         </ul>
     </div>
 </footer>
+
+<script>
+    const currentLang = localStorage.getItem('buzyclaw-lang') || 'zh';
+
+    function setLang(lang) {
+        localStorage.setItem('buzyclaw-lang', lang);
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
+        document.querySelectorAll('[data-zh]').forEach(el => {
+            if (el.dataset[lang]) el.textContent = el.dataset[lang];
+        });
+
+        document.querySelectorAll('.lang-switch button').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+
+        document.title = lang === 'zh'
+            ? '使用条款 — 虾忙 BuzyClaw'
+            : 'Terms of Service — BuzyClaw';
+    }
+
+    document.querySelectorAll('.lang-switch button').forEach(btn => {
+        btn.addEventListener('click', () => setLang(btn.dataset.lang));
+    });
+
+    if (currentLang !== 'zh') setLang(currentLang);
+</script>
 
 </body>
 </html>
