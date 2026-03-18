@@ -794,6 +794,66 @@
             color: var(--text-primary);
         }
 
+        /* Contact QR Code Popup */
+        .contact-popup {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 200;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+        }
+        .contact-popup.active {
+            display: flex;
+        }
+        .contact-popup-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            max-width: 320px;
+            width: 90%;
+            position: relative;
+            animation: popupIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes popupIn {
+            from { opacity: 0; transform: scale(0.9) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .contact-popup-card img {
+            width: 200px;
+            height: 200px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+        .contact-popup-card p {
+            margin-top: 16px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .contact-popup-close {
+            position: absolute;
+            top: 12px; right: 12px;
+            width: 32px; height: 32px;
+            border: none;
+            background: var(--bg-gray);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--text-secondary);
+            transition: background 0.2s;
+        }
+        .contact-popup-close:hover {
+            background: #e5e5e7;
+        }
+
         /* ===================== SCROLL ANIMATIONS ===================== */
         .reveal {
             opacity: 0;
@@ -981,7 +1041,7 @@
             <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.81-1.31.05-2.31-1.32-3.15-2.56C4.25 16.64 2.86 12.45 4.7 9.64c.91-1.39 2.53-2.27 4.28-2.29 1.29-.02 2.52.87 3.31.87.79 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
             <span data-zh="下载 macOS 版" data-en="Download for macOS">下载 macOS 版</span>
         </a>
-        <a href="#" class="btn-secondary">
+        <a href="javascript:void(0)" class="btn-secondary ios-coming-soon">
             <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="2" width="10" height="16" rx="2"/><line x1="10" y1="15" x2="10" y2="15.01" stroke-width="2" stroke-linecap="round"/></svg>
             App Store (iOS)
         </a>
@@ -1186,7 +1246,7 @@
             <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.81-1.31.05-2.31-1.32-3.15-2.56C4.25 16.64 2.86 12.45 4.7 9.64c.91-1.39 2.53-2.27 4.28-2.29 1.29-.02 2.52.87 3.31.87.79 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
             <span data-zh="下载 macOS 版" data-en="Download for macOS">下载 macOS 版</span>
         </a>
-        <a href="#" class="btn-secondary">
+        <a href="javascript:void(0)" class="btn-secondary ios-coming-soon">
             <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="2" width="10" height="16" rx="2"/><line x1="10" y1="15" x2="10" y2="15.01" stroke-width="2" stroke-linecap="round"/></svg>
             App Store (iOS)
         </a>
@@ -1202,12 +1262,31 @@
             <span>&copy; 2026 虾忙 BuzyClaw. All rights reserved.</span>
         </div>
         <ul class="footer-links">
-            <li><a href="#" data-zh="隐私政策" data-en="Privacy">隐私政策</a></li>
-            <li><a href="#" data-zh="使用条款" data-en="Terms">使用条款</a></li>
-            <li><a href="#" data-zh="联系我们" data-en="Contact">联系我们</a></li>
+            <li><a href="privacy.html" data-zh="隐私政策" data-en="Privacy">隐私政策</a></li>
+            <li><a href="terms.html" data-zh="使用条款" data-en="Terms">使用条款</a></li>
+            <li><a href="javascript:void(0)" class="contact-trigger" data-zh="联系我们" data-en="Contact">联系我们</a></li>
         </ul>
     </div>
 </footer>
+
+<!-- ===== iOS COMING SOON POPUP ===== -->
+<div class="contact-popup" id="iosPopup">
+    <div class="contact-popup-card">
+        <button class="contact-popup-close" onclick="document.getElementById('iosPopup').classList.remove('active');document.body.style.overflow='';">&times;</button>
+        <svg viewBox="0 0 48 48" fill="none" stroke="var(--orange)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:48px;height:48px;margin-bottom:16px"><rect x="12" y="4" width="24" height="40" rx="5"/><line x1="24" y1="38" x2="24" y2="38.01" stroke-width="3" stroke-linecap="round"/></svg>
+        <p style="font-size:16px;font-weight:600;color:var(--text-primary);margin-top:0" data-zh="App Store 正在审核中" data-en="Under App Store Review">App Store 正在审核中</p>
+        <p data-zh="请再耐心等我们一下" data-en="Please stay tuned a little longer">请再耐心等我们一下</p>
+    </div>
+</div>
+
+<!-- ===== CONTACT POPUP ===== -->
+<div class="contact-popup" id="contactPopup">
+    <div class="contact-popup-card">
+        <button class="contact-popup-close" id="contactClose">&times;</button>
+        <img src="contact.JPG" alt="联系我们">
+        <p data-zh="扫码添加微信联系我们" data-en="Scan to contact us on WeChat">扫码添加微信联系我们</p>
+    </div>
+</div>
 
 <!-- ===== LIGHTBOX ===== -->
 <div class="lightbox" id="lightbox">
@@ -1358,6 +1437,48 @@
                 goTo(diff > 0 ? Math.min(current + 1, total - 1) : Math.max(current - 1, 0));
             }
         }, { passive: true });
+    });
+
+    // iOS coming soon popup
+    const iosPopup = document.getElementById('iosPopup');
+    document.querySelectorAll('.ios-coming-soon').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            iosPopup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    iosPopup.addEventListener('click', (e) => {
+        if (e.target === iosPopup) {
+            iosPopup.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Contact popup
+    const contactPopup = document.getElementById('contactPopup');
+    document.querySelectorAll('.contact-trigger').forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            contactPopup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    document.getElementById('contactClose').addEventListener('click', () => {
+        contactPopup.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+    contactPopup.addEventListener('click', (e) => {
+        if (e.target === contactPopup) {
+            contactPopup.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && contactPopup.classList.contains('active')) {
+            contactPopup.classList.remove('active');
+            document.body.style.overflow = '';
+        }
     });
 </script>
 
