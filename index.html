@@ -1493,8 +1493,10 @@
         }
     });
 
-    // WeChat browser detection & guide
+    // WeChat browser: use itms-apps:// to open App Store directly, fallback to guide overlay
     if (/MicroMessenger/i.test(navigator.userAgent)) {
+        const itmsUrl = 'itms-apps://itunes.apple.com/app/id6760690791';
+
         const overlay = document.createElement('div');
         overlay.className = 'wechat-guide-overlay';
         overlay.innerHTML = '<div class="wechat-guide-arrow"><svg viewBox="0 0 60 60" fill="none"><path d="M30 8 L30 40" stroke="#fff" stroke-width="3" stroke-linecap="round"/><path d="M20 18 L30 8 L40 18" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="50" r="4" fill="#fff"/></svg></div><div class="wechat-guide-text">点击右上角 ··· <br>选择「在浏览器中打开」<br>即可下载 App</div>';
@@ -1504,7 +1506,12 @@
         document.querySelectorAll('.ios-appstore-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                overlay.classList.add('active');
+                // Try itms-apps:// scheme first
+                window.location.href = itmsUrl;
+                // Fallback: if not opened after 1.5s, show guide overlay
+                setTimeout(() => {
+                    if (!document.hidden) overlay.classList.add('active');
+                }, 1500);
             });
         });
     }
