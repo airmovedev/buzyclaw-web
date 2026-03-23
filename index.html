@@ -1041,7 +1041,7 @@
             <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.81-1.31.05-2.31-1.32-3.15-2.56C4.25 16.64 2.86 12.45 4.7 9.64c.91-1.39 2.53-2.27 4.28-2.29 1.29-.02 2.52.87 3.31.87.79 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
             <span data-zh="下载 macOS 版" data-en="Download for macOS">下载 macOS 版</span>
         </a>
-        <a href="javascript:void(0)" class="btn-secondary ios-coming-soon">
+        <a href="https://apps.apple.com/cn/app/%E8%99%BE%E5%BF%99/id6760690791" target="_blank" class="btn-secondary">
             <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="2" width="10" height="16" rx="2"/><line x1="10" y1="15" x2="10" y2="15.01" stroke-width="2" stroke-linecap="round"/></svg>
             App Store (iOS)
         </a>
@@ -1246,7 +1246,7 @@
             <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.81-1.31.05-2.31-1.32-3.15-2.56C4.25 16.64 2.86 12.45 4.7 9.64c.91-1.39 2.53-2.27 4.28-2.29 1.29-.02 2.52.87 3.31.87.79 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
             <span data-zh="下载 macOS 版" data-en="Download for macOS">下载 macOS 版</span>
         </a>
-        <a href="javascript:void(0)" class="btn-secondary ios-coming-soon">
+        <a href="https://apps.apple.com/cn/app/%E8%99%BE%E5%BF%99/id6760690791" target="_blank" class="btn-secondary">
             <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="2" width="10" height="16" rx="2"/><line x1="10" y1="15" x2="10" y2="15.01" stroke-width="2" stroke-linecap="round"/></svg>
             App Store (iOS)
         </a>
@@ -1268,16 +1268,6 @@
         </ul>
     </div>
 </footer>
-
-<!-- ===== iOS COMING SOON POPUP ===== -->
-<div class="contact-popup" id="iosPopup">
-    <div class="contact-popup-card">
-        <button class="contact-popup-close" onclick="document.getElementById('iosPopup').classList.remove('active');document.body.style.overflow='';">&times;</button>
-        <svg viewBox="0 0 48 48" fill="none" stroke="var(--orange)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:48px;height:48px;margin-bottom:16px"><rect x="12" y="4" width="24" height="40" rx="5"/><line x1="24" y1="38" x2="24" y2="38.01" stroke-width="3" stroke-linecap="round"/></svg>
-        <p style="font-size:16px;font-weight:600;color:var(--text-primary);margin-top:0" data-zh="App Store 正在审核中" data-en="Under App Store Review">App Store 正在审核中</p>
-        <p data-zh="请再耐心等我们一下" data-en="Please stay tuned a little longer">请再耐心等我们一下</p>
-    </div>
-</div>
 
 <!-- ===== CONTACT POPUP ===== -->
 <div class="contact-popup" id="contactPopup">
@@ -1439,21 +1429,6 @@
         }, { passive: true });
     });
 
-    // iOS coming soon popup
-    const iosPopup = document.getElementById('iosPopup');
-    document.querySelectorAll('.ios-coming-soon').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            iosPopup.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    });
-    iosPopup.addEventListener('click', (e) => {
-        if (e.target === iosPopup) {
-            iosPopup.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    });
 
     // Contact popup
     const contactPopup = document.getElementById('contactPopup');
