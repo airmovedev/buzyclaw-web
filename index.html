@@ -995,6 +995,43 @@
                 font-size: 16px;
             }
         }
+
+        /* WeChat guide overlay */
+        .wechat-guide-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 10000;
+            justify-content: flex-end;
+            align-items: flex-end;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .wechat-guide-overlay.active { display: flex; }
+        .wechat-guide-arrow {
+            position: absolute;
+            top: 12px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+        }
+        .wechat-guide-arrow svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+        .wechat-guide-text {
+            position: absolute;
+            top: 80px;
+            right: 16px;
+            color: #fff;
+            font-size: 17px;
+            font-weight: 600;
+            text-align: right;
+            line-height: 1.6;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+        }
     </style>
 </head>
 <body>
@@ -1041,7 +1078,7 @@
             <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.81-1.31.05-2.31-1.32-3.15-2.56C4.25 16.64 2.86 12.45 4.7 9.64c.91-1.39 2.53-2.27 4.28-2.29 1.29-.02 2.52.87 3.31.87.79 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
             <span data-zh="下载 macOS 版" data-en="Download for macOS">下载 macOS 版</span>
         </a>
-        <a href="https://apps.apple.com/cn/app/%E8%99%BE%E5%BF%99/id6760690791" target="_blank" class="btn-secondary">
+        <a href="https://apps.apple.com/cn/app/%E8%99%BE%E5%BF%99/id6760690791" target="_blank" class="btn-secondary ios-appstore-btn">
             <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="2" width="10" height="16" rx="2"/><line x1="10" y1="15" x2="10" y2="15.01" stroke-width="2" stroke-linecap="round"/></svg>
             App Store (iOS)
         </a>
@@ -1246,7 +1283,7 @@
             <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.81-1.31.05-2.31-1.32-3.15-2.56C4.25 16.64 2.86 12.45 4.7 9.64c.91-1.39 2.53-2.27 4.28-2.29 1.29-.02 2.52.87 3.31.87.79 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
             <span data-zh="下载 macOS 版" data-en="Download for macOS">下载 macOS 版</span>
         </a>
-        <a href="https://apps.apple.com/cn/app/%E8%99%BE%E5%BF%99/id6760690791" target="_blank" class="btn-secondary">
+        <a href="https://apps.apple.com/cn/app/%E8%99%BE%E5%BF%99/id6760690791" target="_blank" class="btn-secondary ios-appstore-btn">
             <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="2" width="10" height="16" rx="2"/><line x1="10" y1="15" x2="10" y2="15.01" stroke-width="2" stroke-linecap="round"/></svg>
             App Store (iOS)
         </a>
@@ -1455,6 +1492,22 @@
             document.body.style.overflow = '';
         }
     });
+
+    // WeChat browser detection & guide
+    if (/MicroMessenger/i.test(navigator.userAgent)) {
+        const overlay = document.createElement('div');
+        overlay.className = 'wechat-guide-overlay';
+        overlay.innerHTML = '<div class="wechat-guide-arrow"><svg viewBox="0 0 60 60" fill="none"><path d="M30 8 L30 40" stroke="#fff" stroke-width="3" stroke-linecap="round"/><path d="M20 18 L30 8 L40 18" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="50" r="4" fill="#fff"/></svg></div><div class="wechat-guide-text">点击右上角 ··· <br>选择「在浏览器中打开」<br>即可下载 App</div>';
+        overlay.addEventListener('click', () => overlay.classList.remove('active'));
+        document.body.appendChild(overlay);
+
+        document.querySelectorAll('.ios-appstore-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                overlay.classList.add('active');
+            });
+        });
+    }
 </script>
 
 </body>
